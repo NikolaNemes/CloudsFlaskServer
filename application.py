@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import jsonify
-import numpy as np
+import random
 
 application = Flask(__name__)
 
@@ -10,8 +10,7 @@ def hello():
 
 @application.route('/random/<n>')
 def randomvalues(n):
-    values = np.random.randint(0, 10, int(n))
-    result = {'values': values.tolist()}
+    result = {'values': [random.randint(0, 9) for i in range(int(n))]}
     return jsonify(result)
 
 if __name__ == '__main__':
